@@ -3,9 +3,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SequelizeModule } from '@nestjs/sequelize';
 
-import Transaction from './transactions/transaction.model';
-import Tag from './transactions/tag.model';
-import TransactionTag from './transactions/transaction_tags.model';
 import { TransactionsModule } from './transactions/transactions.module'
 
 @Module({
@@ -23,7 +20,8 @@ import { TransactionsModule } from './transactions/transactions.module'
           instanceName: 'SQLEXPRESS2019'
         }
       },
-      models: [Transaction, Tag, TransactionTag],
+      autoLoadModels: true,
+      synchronize: true,
     }),
     TransactionsModule
   ],
